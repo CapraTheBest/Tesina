@@ -1,7 +1,9 @@
 <?php
-$h = "25.05";
-$t = "20.00";
-$date = date('Y/m/d h:i:s', time());
+
+$h = "0";
+$t = "0";
+$date = "00/01/01 00:00:00";
+$query = "";
 
 $connection = mysql_connect("localhost","root","");
 if (!$connection) {
@@ -10,17 +12,6 @@ if (!$connection) {
 echo 'Connected successfully';
 
 mysql_select_db("pianta",$connection);
-
-$handle = @fopen("newfile.txt", "r");
-if ($handle) {
-    while (($buffer = fgets($handle, 4096)) !== false) {
-        echo $buffer;
-    }
-    if (!feof($handle)) {
-        echo "Error: unexpected fgets() fail\n";
-    }
-    fclose($handle);
-}
 
 /* write shit yoh
 $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
@@ -33,14 +24,34 @@ fwrite($myfile, $txt);
 fclose($myfile);*/
 
 // Read file
-$myfile = fopen("newfile.txt", "r") or die("Unable to open file!");
+$myfile = fopen("Log.txt", "r") or die("Unable to open file!");
 // Output one line until end-of-file
 while(!feof($myfile)) {
-  echo fgets($myfile) . "<br>";
+  $myStr= fgets($myfile);
+  echo $myStr;
+  echo "<br>";
+  if(strpos($myStr, "h") !== false){
+	  $h = substr($myStr, 1, 6); 
+  }
+  if(strpos($myStr, "t") !== false){
+	  $t = substr($myStr, 1, 6);
+  }
+  if(strpos($myStr, "/") !== false){
+	  $date = substr($myStr, 0, 17); 
+  }
+  echo $h ."<br>"; 
+  echo $t ."<br>";  
+  echo $date ."<br>"; 
+  echo "END OF STUFF <br>";
+  
+  if($h != "0" && $t != "0" && $date != "00/01/01 00:00:00"){
+	$query = "INSERT INTO `pianta`.`pianta` (`id`, `time`, `humidity`, `temperature`) VALUES (NULL, '".$date."', '".$h."', '".$t."')";
+	$h = "0";
+	$t = "0";
+	$date = "00/01/01 00:00:00";
 }
+}
+$result = mysql_query($query,$connection);
+echo ($result == 1) ? "Succesfully executed mysql query!" : "Error while executing mysql query!";
 fclose($myfile);
-$query = "INSERT INTO `pianta`.`pianta` (`id`, `time`, `humidity`, `temperature`) VALUES (NULL, '".$date."', '".$h."', '".$t."')";
-  $result = mysql_query($query,$connection);
-  echo $result;
-
 ?>
