@@ -59,6 +59,10 @@ while(!feof($myfile)) {
 	echo ($result == 1) ? "Succesfully executed mysql query!" : "Error while executing mysql query!";
 }
 }
-//echo "Everything's fine";
+echo "Everything's fine";
 fclose($myfile);
+
+$path="Log.txt";
+if(@unlink($path)) {echo "Deleted file "; }
+else{echo "File can't be deleted";}
 ?>
