@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /var/www/tesina/img/webcam && sudo guvcview -d /dev/video3 --config=webcam.gpfl --format=jpeg --cap_time=60 --no_display
+sudo guvcview -d /dev/video3 --config=webcam.gpfl --format=jpeg --cap_time=60 --display=

@@ -1,62 +1,85 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Smart Greenhouse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
 
-//$i = 0;
-//$f = 0;
-//$g = 0;
-$h = 0;
-$t = 0;
-$date = "00/00/00 00:00:00";
+<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+<!--script src="js/less-1.3.3.min.js"></script-->
+<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 
-$connection = mysql_connect("localhost","root","");
-if (!$connection) {
-    die('Could not connect: ' . mysql_error());
-}
-echo 'Connected successfully';
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 
-mysql_select_db("pianta",$connection);
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
 
-/* write shit yoh
-$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-$txt = $h."\n";
-fwrite($myfile, $txt);
-$txt = $t."\n";
-fwrite($myfile, $txt);
-$txt = $date."\n";
-fwrite($myfile, $txt);
-fclose($myfile);*/
+<!-- Fav and touch icons -->
+<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png"> -->
+<link rel="shortcut icon" href="../img/favicon.ico">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+</head>
 
-// Read file
-$myfile = fopen("Log.txt", "r") or die("Unable to open file!");
-// Output one line until end-of-file
-while(!feof($myfile)) {
-  $myStr= fgets($myfile);
-  //echo $myStr;
-  echo "<br>";
-  if(strpos($myStr, "h") !== false){
-	  $h = substr($myStr, 1, 6); 
-	  //$i++;
-  }
-  if(strpos($myStr, "t") !== false){
-	  $t = substr($myStr, 1, 6);
-	  //$f++;
-  }
-  if(strpos($myStr, "/") !== false){
-	  $date = substr($myStr, 0, 17); 
-	  //$g++;
-  }
-  //echo $h ."<br>"; 
-  //echo $t ."<br>";  
-  //echo $date ."<br>"; 
-  //echo "END OF STUFF <br>";
-  
-  if(($h != "0") && ($t != "0") && ($date != "00/00/00 00:00:00")){
-	$query = "INSERT INTO `pianta`.`pianta` (`id`, `time`, `humidity`, `temperature`) VALUES (NULL, '".$date."', '".$h."', '".$t."')";
-	$h = "0";
-	$t = "0";
-	$date = "00/00/00 00:00:00";
-	$result = mysql_query($query,$connection);
-	echo ($result == 1) ? "Succesfully executed mysql query!" : "Error while executing mysql query!";
-}
-}
-fclose($myfile);
-?>
+<body>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <h1 class="text-center"> Smart Greenhouse </h1>
+      <br>
+      <!-- <ul class="breadcrumb">
+				<li class="active">
+					Home <span class="divider">/</span>
+				</li>
+				<li>
+					<a href="#">Library</a> <span class="divider">/</span>
+				</li>
+				<li>
+					<a href="#">Data</a> <span class="divider"></span>
+				</li>
+			</ul> -->
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-md-4 column">
+      <h2> Temperature Check </h2>
+      <p>
+        <?php
+        $connection = mysql_connect("localhost","root","");
+		if (!$connection) {
+    		die(mysql_error());
+		}
+
+		mysql_select_db("pianta",$connection);
+		$query = "SELECT time, humidity, temperature FROM pianta ORDER BY id DESC LIMIT 1";
+		$dave= mysql_query($query) or die(mysql_error());
+
+		while($row = mysql_fetch_assoc($dave)){
+			foreach($row as $cname => $cvalue){
+        		print "$cname: $cvalue\t<br>";
+    		}
+    	print "\r\n";
+		}
+		?>
+      </p>
+    </div>
+    <div class="col-md-5 column">
+      <h2> Sql Loading output </h2>
+      <p>
+        <div> <?php include('sql_load.php'); ?> </div>
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
