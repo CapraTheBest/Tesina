@@ -6,11 +6,18 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.io.File;
+import java.io.FileInputStream;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 
 public class Main {
 	static SerialPort serialPort;
@@ -69,6 +76,36 @@ public class Main {
 			bw.write(converted);
 			bw.write(df.format(dateobj) + System.getProperty("line.separator"));
 			bw.close();
+		}
+		
+		public void loadToServer() throws IOException {
+			String SFTPHOST = "SERVERIP";
+			int    SFTPPORT = PORT_NUMBER;
+			String SFTPUSER = "USERNAME";
+			String SFTPPASS = "PASSWORD";
+			String SFTPWORKINGDIR = "/FOLDER/TO/STUFF/:DD";
+			 
+			Session     session     = null;
+			Channel     channel     = null;
+			ChannelSftp channelSftp = null;
+			 
+			try{
+			            JSch jsch = new JSch();
+			            session = jsch.getSession(SFTPUSER,SFTPHOST,SFTPPORT);
+			            session.setPassword(SFTPPASS);
+			            java.util.Properties config = new java.util.Properties();
+			            config.put("StrictHostKeyChecking", "no");
+			            session.setConfig(config);
+			            session.connect();
+			            channel = session.openChannel("sftp");
+			            channel.connect();
+			            channelSftp = (ChannelSftp)channel;
+			            channelSftp.cd(SFTPWORKINGDIR);
+			            File f = new File("FILE.NAME");
+			            channelSftp.put(new FileInputStream(f), f.getName());
+			}catch(Exception ex){
+			ex.printStackTrace();
+			}
 		}
 	}
 }
