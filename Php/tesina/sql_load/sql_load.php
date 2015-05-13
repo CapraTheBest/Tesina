@@ -7,11 +7,12 @@ $h = 0;
 $t = 0;
 $date = "00/00/00 00:00:00";
 
-$connection = mysql_connect("localhost","root","");
+$connection = mysql_connect("37.59.123.99","root","boriobello96");
+
 if (!$connection) {
     die('Could not connect: ' . mysql_error());
 }
-echo 'Connected successfully';
+echo '<br>Connected successfully<br>';
 
 mysql_select_db("pianta",$connection);
 
@@ -50,19 +51,22 @@ while(!feof($myfile)) {
   //echo "END OF STUFF <br>";
   
   if(($h != "0") && ($t != "0") && ($date != "00/00/00 00:00:00")){
-	$query = "INSERT INTO `pianta`.`pianta` (`id`, `time`, `humidity`, `temperature`) VALUES (NULL, '".$date."', '".$h."', '".$t."')";
+	$query = "INSERT INTO pianta (id, time, humidity, temperature) 
+		SELECT * FROM (SELECT NULL, '".$date."', '".$h."', '".$t."') AS tmp 
+		WHERE NOT EXISTS ( SELECT time FROM pianta WHERE time = '".$date."') LIMIT 1";
+	//$query = "INSERT INTO `pianta`.`pianta` (`id`, `time`, `humidity`, `temperature`) VALUES (NULL, '".$date."', '".$h."', '".$t."')";
 	$h = "0";
 	$t = "0";
 	$date = "00/00/00 00:00:00";
 	//mysql_query($query,$connection);
 	$result = mysql_query($query,$connection);
-	echo ($result == 1) ? "Succesfully executed mysql query!" : "Error while executing mysql query!";
+	echo ($result == 1) ? "<br>Succesfully executed mysql query!<br>" : "<br>Error while executing mysql query! ".mysql_error()."<br>";
 }
 }
 echo "Everything's fine";
 fclose($myfile);
 
 $path="Log.txt";
-if(@unlink($path)) {echo "Deleted file "; }
-else{echo "File can't be deleted";}
+if(@unlink($path)) {echo "<br>Deleted file <br>"; }
+else{echo "<br>File can't be deleted<br>";}
 ?>

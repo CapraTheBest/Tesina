@@ -5,7 +5,7 @@
 	
 	$time = "";
 	$temperature = "";
-	$connection = mysql_connect("localhost","root","");
+	$connection = mysql_connect("37.59.123.99","root","boriobello96");
 	if (!$connection) {
    		die(mysql_error());
 	}

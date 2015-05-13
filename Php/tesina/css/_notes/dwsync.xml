@@ -12,4 +12,10 @@
 <file name="bootstrap.css" server="192.168.0.23//var/www/tesina/" local="130709689300000000" remote="130741072710000000" Dst="2" />
 <file name="bootstrap.css.map" server="192.168.0.23//var/www/tesina/" local="130709689280000000" remote="130741072720000000" Dst="2" />
 <file name="bootstrap.min.css" server="192.168.0.23//var/www/tesina/" local="130709689300000000" remote="130741072720000000" Dst="2" />
+<file name="bootstrap-theme.css" server="37.59.123.99//var/www/tesina/" local="130745960764994777" remote="130745960760000000" Dst="2" />
+<file name="bootstrap-theme.css.map" server="37.59.123.99//var/www/tesina/" local="130745960765024779" remote="130745960760000000" Dst="2" />
+<file name="bootstrap-theme.min.css" server="37.59.123.99//var/www/tesina/" local="130745960765064781" remote="130745960760000000" Dst="2" />
+<file name="bootstrap.css" server="37.59.123.99//var/www/tesina/" local="130745960765264793" remote="130745960760000000" Dst="2" />
+<file name="bootstrap.css.map" server="37.59.123.99//var/www/tesina/" local="130745960765334797" remote="130745960760000000" Dst="2" />
+<file name="bootstrap.min.css" server="37.59.123.99//var/www/tesina/" local="130745960765364798" remote="130745960760000000" Dst="2" />
 </dwsync>

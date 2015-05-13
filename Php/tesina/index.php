@@ -35,7 +35,7 @@
 <div class="container">
   <div class="row clearfix">
     <div class="col-md-12 column">
-      <h1 class="text-center"> Smart Greenhouse </h1>
+      <h1 class="text-center"> <a href="#" style="text-decoration:none;"> Smart Greenhouse </a> </h1>
       <br>
       <!-- <ul class="breadcrumb">
 				<li class="active">
@@ -57,12 +57,12 @@
   </div>
   <div class="row clearfix">
     <div class="col-md-4 column">
-      <h2> Temperature Check </h2>
+      <h2> Last Data Acquired </h2>
       <p>
         <?php
-        $connection = mysql_connect("localhost","root","");
+        $connection = mysql_connect("37.59.123.99","root","boriobello96");
 		if (!$connection) {
-    		die(mysql_error());
+    			die(mysql_error());
 		}
 
 		mysql_select_db("pianta",$connection);
@@ -71,7 +71,7 @@
 
 		while($row = mysql_fetch_assoc($dave)){
 			foreach($row as $cname => $cvalue){
-        		print "$cname: $cvalue\t<br>";
+        			echo "$cname: $cvalue\t<br>";
     		}
     	print "\r\n";
 		}
@@ -84,9 +84,9 @@
       <p> <a class="btn" href="/tesina/graph/">View details »</a> </p>
     </div>
     <div class="col-md-4 column">
-      <h2> Heading </h2>
-      <p> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p> <a class="btn" href="#">View details »</a> </p>
+      <h2> Configure </h2>
+      <p> Configure some parameters for the plant </p>
+      <p> <a class="btn" href="/tesina/config/">View details »</a> </p>
     </div>
   </div>
 </div>

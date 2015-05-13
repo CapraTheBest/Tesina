@@ -35,7 +35,7 @@
 <div class="container">
   <div class="row clearfix">
     <div class="col-md-12 column">
-      <h1 class="text-center"> Smart Greenhouse </h1>
+      <h1 class="text-center"> <a href="/tesina/" style="text-decoration:none;"> Smart Greenhouse </a> </h1>
       <br>
       <!-- <ul class="breadcrumb">
 				<li class="active">
@@ -55,7 +55,7 @@
       <h2> Temperature Check </h2>
       <p>
         <?php
-        $connection = mysql_connect("localhost","root","");
+        $connection = mysql_connect("37.59.123.99","root","boriobello96");
 		if (!$connection) {
     		die(mysql_error());
 		}

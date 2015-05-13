@@ -12,4 +12,16 @@
 <file name="webcam.gpfl" server="192.168.0.23//var/www/tesina/" local="130731550740000000" remote="130731550740000000" Dst="2" />
 <file name="webcam.sh" server="192.168.0.23//var/www/tesina/" local="130731560820000000" remote="130731560820000000" Dst="2" />
 <file name="webcam.sh.save" server="192.168.0.23//var/www/tesina/" local="130731570700000000" remote="130731570700000000" Dst="2" />
+<file name="Image-10.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676291782" remote="130746818670000000" Dst="2" />
+<file name="Image-11.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676361786" remote="130746818670000000" Dst="2" />
+<file name="Image-12.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676421789" remote="130746818670000000" Dst="2" />
+<file name="Image-13.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676531796" remote="130746818670000000" Dst="2" />
+<file name="Image-5.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676571798" remote="130746818670000000" Dst="2" />
+<file name="Image-6.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676611800" remote="130746818670000000" Dst="2" />
+<file name="Image-7.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676651802" remote="130746818670000000" Dst="2" />
+<file name="Image-8.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676691805" remote="130746818670000000" Dst="2" />
+<file name="Image-9.jpg" server="37.59.123.99//var/www/tesina/" local="130746818676731807" remote="130746818670000000" Dst="2" />
+<file name="webcam.gpfl" server="37.59.123.99//var/www/tesina/" local="130746818676791810" remote="130746818670000000" Dst="2" />
+<file name="webcam.sh" server="37.59.123.99//var/www/tesina/" local="130746818676811812" remote="130746818670000000" Dst="2" />
+<file name="webcam.sh.save" server="37.59.123.99//var/www/tesina/" local="130746818680962049" remote="130746818680000000" Dst="2" />
 </dwsync>
